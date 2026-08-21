@@ -1,0 +1,117 @@
+:root {
+  /* Renew-It! brand colors */
+  --color-teal: #00a3a3;
+  --color-teal-ink: #007a7a;
+  --color-navy: #0b1d3a;
+  --color-sky: #4fc3e3;
+  --color-mist: #f2f6f8;
+  --color-white: #ffffff;
+  --color-light-gray: #f2f2f2;
+  --color-mid-gray: #b8bdc2;
+  --color-charcoal: #1f2328;
+
+  /* Semantic tokens */
+  --color-bg: var(--color-white);
+  --color-ink: var(--color-navy);
+  --color-ink-soft: #243044;
+  --color-ink-muted: #4a5568;
+  --color-stone: var(--color-mist);
+  --color-stone-line: #dde4ea;
+  --color-accent: var(--color-teal);
+  --color-accent-soft: var(--color-sky);
+  --color-moss: var(--color-teal);
+
+  /* Type tokens — Manrope headings, Inter UI/body */
+  --font-display: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-ui: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --text-hero: clamp(3.25rem, 6.2vw, 5rem);
+  --text-title: clamp(2rem, 3.8vw, 2.75rem);
+  --text-lead: 1.25rem;
+  --text-body: 1.0625rem;
+  --text-ui: 0.9375rem;
+  --text-eyebrow: 0.75rem;
+
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 10px;
+
+  --container-width: 1280px;
+  --hero-inset: clamp(20px, 2.8vw, 40px);
+  --hero-inset-mobile: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: -0.011em;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  font-weight: 700;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
