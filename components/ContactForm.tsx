@@ -1,6 +1,12 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import {
+  formatUaePhone,
+  getPhoneDigits,
+  isPhoneEntered,
+  isValidUaePhone,
+} from "@/lib/format-phone";
 import styles from "./ContactForm.module.css";
 
 type FormState = {
@@ -23,7 +29,12 @@ function isValidEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
-export default function ContactForm() {
+type ContactFormProps = {
+  idPrefix?: string;
+};
+
+export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
+  const fieldId = (name: string) => (idPrefix ? `${idPrefix}-${name}` : name);
   const [form, setForm] = useState<FormState>(INITIAL_STATE);
   const [errors, setErrors] = useState<Partial<FormState>>({});
   const [status, setStatus] = useState<Status>("idle");
@@ -34,14 +45,36 @@ export default function ContactForm() {
       setForm((prev) => ({ ...prev, [field]: e.target.value }));
     };
 
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm((prev) => ({ ...prev, phone: formatUaePhone(e.target.value) }));
+
+    if (errors.phone) {
+      setErrors((prev) => ({ ...prev, phone: undefined }));
+    }
+  };
+
+  const handlePhoneFocus = () => {
+    if (!form.phone) {
+      setForm((prev) => ({ ...prev, phone: "+971 " }));
+    }
+  };
+
+  const handlePhoneBlur = () => {
+    if (getPhoneDigits(form.phone).length === 0) {
+      setForm((prev) => ({ ...prev, phone: "" }));
+    }
+  };
+
   const validate = (): boolean => {
     const nextErrors: Partial<FormState> = {};
 
     if (!form.name.trim()) {
       nextErrors.name = "Please enter your name";
     }
-    if (!form.phone.trim() && !form.email.trim()) {
+    if (!isPhoneEntered(form.phone) && !form.email.trim()) {
       nextErrors.phone = "Please enter a phone number or email";
+    } else if (isPhoneEntered(form.phone) && !isValidUaePhone(form.phone)) {
+      nextErrors.phone = "Please enter a valid UAE phone number";
     }
     if (form.email.trim() && !isValidEmail(form.email)) {
       nextErrors.email = "Please check the email format";
@@ -92,19 +125,19 @@ export default function ContactForm() {
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
       <div className={styles.field}>
-        <label htmlFor="name">Name</label>
+        <label htmlFor={fieldId("name")}>Name</label>
         <input
-          id="name"
+          id={fieldId("name")}
           type="text"
           autoComplete="name"
           placeholder="How should we address you"
           value={form.name}
           onChange={handleChange("name")}
           aria-invalid={Boolean(errors.name)}
-          aria-describedby={errors.name ? "name-error" : undefined}
+          aria-describedby={errors.name ? fieldId("name-error") : undefined}
         />
         {errors.name && (
-          <span className={styles.errorText} id="name-error">
+          <span className={styles.errorText} id={fieldId("name-error")}>
             {errors.name}
           </span>
         )}
@@ -112,38 +145,42 @@ export default function ContactForm() {
 
       <div className={styles.row}>
         <div className={styles.field}>
-          <label htmlFor="phone">Phone</label>
+          <label htmlFor={fieldId("phone")}>Phone</label>
           <input
-            id="phone"
+            id={fieldId("phone")}
             type="tel"
             autoComplete="tel"
-            placeholder="+971"
+            placeholder="+971 58 593 0042"
             value={form.phone}
-            onChange={handleChange("phone")}
+            onChange={handlePhoneChange}
+            onFocus={handlePhoneFocus}
+            onBlur={handlePhoneBlur}
+            inputMode="tel"
+            maxLength={17}
             aria-invalid={Boolean(errors.phone)}
-            aria-describedby={errors.phone ? "phone-error" : undefined}
+            aria-describedby={errors.phone ? fieldId("phone-error") : undefined}
           />
           {errors.phone && (
-            <span className={styles.errorText} id="phone-error">
+            <span className={styles.errorText} id={fieldId("phone-error")}>
               {errors.phone}
             </span>
           )}
         </div>
 
         <div className={styles.field}>
-          <label htmlFor="email">Email</label>
+          <label htmlFor={fieldId("email")}>Email</label>
           <input
-            id="email"
+            id={fieldId("email")}
             type="email"
             autoComplete="email"
             placeholder="you@mail.com"
             value={form.email}
             onChange={handleChange("email")}
             aria-invalid={Boolean(errors.email)}
-            aria-describedby={errors.email ? "email-error" : undefined}
+            aria-describedby={errors.email ? fieldId("email-error") : undefined}
           />
           {errors.email && (
-            <span className={styles.errorText} id="email-error">
+            <span className={styles.errorText} id={fieldId("email-error")}>
               {errors.email}
             </span>
           )}
@@ -151,9 +188,9 @@ export default function ContactForm() {
       </div>
 
       <div className={styles.field}>
-        <label htmlFor="message">Message</label>
+        <label htmlFor={fieldId("message")}>Message</label>
         <textarea
-          id="message"
+          id={fieldId("message")}
           rows={4}
           placeholder="What do you need renewed? Visa, Emirates ID, trade license…"
           value={form.message}

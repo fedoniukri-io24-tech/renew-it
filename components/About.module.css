@@ -1,172 +1,148 @@
-.stepsSection {
-  background: var(--color-white);
-  padding: 96px 0;
+.section {
+  background: var(--color-navy);
+  padding: var(--section-pad) 0;
+  overflow: hidden;
 }
 
-.stepsInner {
+.inner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px 56px;
+  align-items: center;
+}
+
+.copyCol {
   display: flex;
   flex-direction: column;
-  gap: 56px;
+  gap: 28px;
 }
 
 .title {
   font-family: var(--font-display);
   font-size: var(--text-title);
   font-weight: 700;
-  color: var(--color-navy);
-  line-height: 1.14;
-  letter-spacing: -0.03em;
+  color: var(--color-white);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
   max-width: 16ch;
 }
 
-.steps {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-.stepNum {
-  display: block;
-  font-family: var(--font-ui);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  color: var(--color-teal-ink);
-  letter-spacing: 0.08em;
-  margin-bottom: 18px;
-}
-
-.stepTitle {
-  font-family: var(--font-display);
-  font-size: 1.375rem;
-  font-weight: 700;
-  color: var(--color-navy);
-  margin-bottom: 12px;
-  letter-spacing: -0.025em;
-  line-height: 1.25;
-}
-
-.stepText {
-  font-family: var(--font-body);
-  font-size: var(--text-body);
-  line-height: 1.65;
-  color: var(--color-ink-muted);
-  max-width: 32ch;
-}
-
-.aboutSection {
-  background: var(--color-navy);
-  padding: 96px 0;
-}
-
-.aboutInner {
-  max-width: 760px;
-}
-
-.aboutTitle {
-  font-family: var(--font-display);
-  font-size: var(--text-title);
-  font-weight: 700;
-  color: var(--color-white);
-  line-height: 1.16;
-  letter-spacing: -0.03em;
-  margin-bottom: 24px;
-}
-
-.aboutText {
+.copy p {
   font-family: var(--font-body);
   font-size: var(--text-lead);
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.84);
   letter-spacing: -0.011em;
+  max-width: 42ch;
 }
 
-.aboutText strong {
-  color: var(--color-sky);
-  font-weight: 700;
+.visual {
+  position: relative;
+  min-height: 520px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 
-.btnPrimary {
-  font-family: var(--font-ui);
-  background-color: var(--color-white);
-  color: var(--color-navy);
-  padding: 10px 10px 10px 28px;
-  border-radius: 999px;
-  text-decoration: none;
-  font-size: var(--text-ui);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  display: inline-flex;
-  align-items: center;
-  gap: 20px;
-  margin-top: 36px;
-  transition: background-color 0.2s ease, color 0.2s ease;
-  line-height: 1.2;
+.photo {
+  object-fit: cover;
+  object-position: center 40%;
 }
 
-.btnPrimary:hover {
-  background-color: var(--color-teal);
-  color: var(--color-white);
+.visualVeil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 163, 163, 0.18) 0%,
+    transparent 45%,
+    rgba(11, 29, 58, 0.25) 100%
+  );
+  pointer-events: none;
 }
 
-.btnPrimary:hover .arrowIcon {
-  background: var(--color-white);
-  color: var(--color-navy);
-}
-
-.arrowIcon {
-  background: var(--color-navy);
-  color: var(--color-white);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+.highlights {
+  grid-column: 1 / -1;
+  list-style: none;
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  flex-shrink: 0;
+  align-items: center;
+  gap: 20px 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  text-align: center;
+}
+
+.highlights li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-sky);
+  letter-spacing: -0.01em;
+  min-width: 140px;
+}
+
+.ctaWrap {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  padding-top: 32px;
+}
+
+.highlightIcon {
+  width: 48px;
+  height: auto;
 }
 
 @media (max-width: 900px) {
-  .stepsSection,
-  .aboutSection {
-    padding: 72px 0;
-  }
-
-  .steps {
+  .inner {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 40px;
   }
 
-  .title,
-  .stepText {
+  .visual {
+    min-height: 360px;
+    order: -1;
+  }
+
+  .title {
+    max-width: 100%;
+  }
+
+  .copy p {
     max-width: 100%;
   }
 }
 
 @media (max-width: 640px) {
-  .stepsSection,
-  .aboutSection {
-    padding: 56px 0;
+  .visual {
+    min-height: 280px;
   }
 
-  .title,
-  .aboutTitle {
-    font-size: 32px;
+  .copy p {
+    font-size: 1.125rem;
   }
 
-  .aboutText {
-    font-size: 17px;
+  .highlights {
+    gap: 16px 20px;
   }
 
-  .btnPrimary {
-    width: 100%;
-    justify-content: space-between;
-    font-size: 1rem;
-    padding: 12px 12px 12px 26px;
+  .highlights li {
+    min-width: 120px;
+    font-size: 0.9375rem;
   }
 
-  .arrowIcon {
-    width: 46px;
-    height: 46px;
+  .ctaWrap {
+    padding-top: 24px;
   }
 }

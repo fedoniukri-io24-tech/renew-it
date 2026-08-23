@@ -1,4 +1,8 @@
 import type { Metadata } from "next";
+import QuoteModalProvider from "@/components/QuoteModalProvider";
+import ScrollReveal from "@/components/ScrollReveal";
+import StructuredData from "@/components/StructuredData";
+import { rootMetadata } from "@/lib/metadata";
 import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -14,11 +18,7 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Renew-It! — Due? We renew.",
-  description:
-    "Fast visa, Emirates ID, trade license, and business document renewals in Dubai and the UAE. Stay compliant without the bureaucracy.",
-};
+export const metadata: Metadata = rootMetadata;
 
 export default function RootLayout({
   children,
@@ -27,7 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
-      <body>{children}</body>
+      <body>
+        <StructuredData />
+        <ScrollReveal />
+        <QuoteModalProvider>{children}</QuoteModalProvider>
+      </body>
     </html>
   );
 }

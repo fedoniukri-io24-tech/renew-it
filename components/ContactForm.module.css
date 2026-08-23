@@ -1,9 +1,9 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
   width: 100%;
-  max-width: 560px;
+  max-width: none;
 }
 
 .row {
@@ -20,23 +20,23 @@
 
 .field label {
   font-family: var(--font-ui);
-  font-size: 12px;
-  letter-spacing: 0.08em;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-ink-muted);
+  color: var(--color-navy);
   font-weight: 600;
 }
 
 .field input,
 .field textarea {
-  background: var(--color-white);
-  border: 1px solid var(--color-stone-line);
+  background: #f8fafc;
+  border: 2px solid var(--color-stone-line);
   border-radius: var(--radius-sm);
-  padding: 15px 18px;
-  font-size: 16px;
+  padding: 16px 18px;
+  font-size: 1.0625rem;
   font-family: var(--font-body);
   color: var(--color-navy);
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
   resize: vertical;
 }
 
@@ -48,6 +48,8 @@
 .field input:focus,
 .field textarea:focus {
   border-color: var(--color-teal);
+  background: var(--color-white);
+  outline: none;
 }
 
 .field input[aria-invalid="true"],
@@ -62,21 +64,23 @@
 
 .btnSubmit {
   font-family: var(--font-ui);
-  align-self: flex-start;
+  align-self: stretch;
   margin-top: 8px;
   background-color: var(--color-navy);
   color: var(--color-white);
   border: none;
-  padding: 10px 10px 10px 30px;
+  padding: 8px 8px 8px 22px;
   border-radius: 999px;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   display: inline-flex;
   align-items: center;
-  gap: 18px;
+  justify-content: space-between;
+  gap: 14px;
   transition: background-color 0.2s ease;
   line-height: 1.2;
+  width: 100%;
 }
 
 .btnSubmit:hover:not(:disabled) {
@@ -91,8 +95,8 @@
 .arrowIcon {
   background: var(--color-white);
   color: var(--color-navy);
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -177,13 +181,13 @@
   .btnSubmit {
     width: 100%;
     justify-content: space-between;
-    font-size: 18px;
-    padding: 12px 12px 12px 26px;
+    font-size: 0.9375rem;
+    padding: 8px 8px 8px 22px;
   }
 
   .arrowIcon {
-    width: 46px;
-    height: 46px;
+    width: 36px;
+    height: 36px;
   }
 
   .btnGhost {

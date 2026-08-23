@@ -1,0 +1,171 @@
+.section {
+  position: relative;
+  padding: var(--section-pad) 0;
+  overflow: hidden;
+  color: var(--color-white);
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bgImage {
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+.bgVeil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(11, 29, 58, 0.88) 0%,
+      rgba(11, 29, 58, 0.72) 48%,
+      rgba(11, 29, 58, 0.55) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(11, 29, 58, 0.2) 0%,
+      rgba(11, 29, 58, 0.55) 100%
+    );
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  max-width: 1100px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 1.1;
+  margin-bottom: 20px;
+  letter-spacing: -0.035em;
+  max-width: 14ch;
+}
+
+.text {
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.84);
+  max-width: 42ch;
+}
+
+.list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.icon {
+  width: 80px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.when {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-sky);
+  margin-bottom: 10px;
+  letter-spacing: -0.025em;
+}
+
+.itemText {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 8px;
+}
+
+.closing {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.4vw, 1.875rem);
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: -0.03em;
+  max-width: 20ch;
+}
+
+@media (max-width: 900px) {
+  .inner {
+    gap: 40px;
+  }
+
+  .list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 12px;
+  }
+
+  .title {
+    max-width: 100%;
+  }
+
+  .icon {
+    width: 64px;
+    margin-bottom: 14px;
+  }
+
+  .when {
+    font-size: 1.125rem;
+    margin-bottom: 6px;
+  }
+
+  .itemText {
+    font-size: 0.9375rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .list {
+    gap: 12px 8px;
+  }
+
+  .item {
+    text-align: center;
+  }
+
+  .icon {
+    width: 52px;
+    margin: 0 auto 10px;
+  }
+
+  .when {
+    font-size: 0.8125rem;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+
+  .itemText {
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+
+  .cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

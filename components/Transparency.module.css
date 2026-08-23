@@ -1,0 +1,236 @@
+.section {
+  background: var(--color-white);
+  padding: var(--section-pad) 0;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.intro {
+  max-width: 720px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: 700;
+  color: var(--color-navy);
+  line-height: 1.1;
+  margin-bottom: 20px;
+  letter-spacing: -0.035em;
+  max-width: 22ch;
+}
+
+.text {
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+  max-width: 42ch;
+}
+
+.visualVeil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      105deg,
+      rgba(11, 29, 58, 0.78) 0%,
+      rgba(11, 29, 58, 0.5) 42%,
+      rgba(11, 29, 58, 0.22) 100%
+    );
+}
+
+.photoQuote {
+  position: absolute;
+  left: clamp(24px, 4vw, 44px);
+  bottom: clamp(22px, 3.5vw, 32px);
+  right: clamp(24px, 4vw, 44px);
+  max-width: 38ch;
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--color-white);
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+  text-shadow: 0 6px 24px rgba(11, 29, 58, 0.35);
+  z-index: 1;
+}
+
+.photoQuote::before {
+  content: "\201C";
+  display: block;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  line-height: 1;
+  color: var(--color-sky);
+  margin-bottom: 8px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.visualBand {
+  position: relative;
+  width: 100%;
+  height: clamp(200px, 26vw, 300px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.photo {
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.item {
+  padding: clamp(24px, 3vw, 32px);
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--color-mist);
+}
+
+.item:nth-child(1) {
+  background: color-mix(in srgb, var(--color-teal) 9%, var(--color-mist));
+}
+
+.item:nth-child(2) {
+  background: color-mix(in srgb, var(--color-sky) 14%, var(--color-mist));
+}
+
+.item:nth-child(3) {
+  background: color-mix(in srgb, var(--color-navy) 6%, var(--color-mist));
+}
+
+.item:nth-child(4) {
+  background: color-mix(in srgb, var(--color-teal) 5%, var(--color-white));
+}
+
+.icon {
+  width: 72px;
+  height: auto;
+  margin-bottom: 18px;
+}
+
+.itemTitle {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-bottom: 10px;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.itemText {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--color-ink-muted);
+  max-width: none;
+}
+
+.closing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-stone-line);
+}
+
+.closingTextBlock {
+  max-width: 36ch;
+}
+
+.closingLead {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.4vw, 1.875rem);
+  font-weight: 700;
+  color: var(--color-navy);
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+}
+
+.closingText {
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  color: var(--color-ink-soft);
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .inner {
+    gap: 40px;
+  }
+
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .title,
+  .text {
+    max-width: 100%;
+  }
+
+  .visualBand {
+    height: clamp(180px, 42vw, 260px);
+  }
+}
+
+@media (max-width: 640px) {
+  .list {
+    gap: 12px;
+  }
+
+  .item {
+    padding: 18px 16px;
+    border-radius: var(--radius-sm);
+  }
+
+  .icon {
+    width: 48px;
+    margin-bottom: 12px;
+  }
+
+  .itemTitle {
+    font-size: 1.0625rem;
+    margin-bottom: 8px;
+  }
+
+  .itemText {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    max-width: none;
+  }
+
+  .photoQuote {
+    font-size: 1.0625rem;
+    max-width: 100%;
+  }
+
+  .photoQuote::before {
+    font-size: 1.75rem;
+    margin-bottom: 6px;
+  }
+
+  .closing {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

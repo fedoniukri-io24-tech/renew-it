@@ -1,0 +1,16 @@
+<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-step-share" x1="12" y1="12" x2="84" y2="84" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BAE6FD"/>
+      <stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient>
+    <filter id="s-step-share" x="0" y="0" width="96" height="96" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0B1D3A" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <g filter="url(#s-step-share)">
+    <rect x="10" y="10" width="76" height="76" rx="22" fill="url(#g-step-share)"/>
+    <rect x="10.5" y="10.5" width="75" height="75" rx="21.5" stroke="white" stroke-opacity="0.28"/>
+    <path d="M48 30v24M48 54l-12-12M48 54l12-12" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><rect x="28" y="58" width="40" height="8" rx="4" fill="white"/>
+  </g>
+</svg>

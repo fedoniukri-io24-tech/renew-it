@@ -1,0 +1,103 @@
+.btn {
+  font-family: var(--font-ui);
+  padding: 8px 8px 8px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  line-height: 1.2;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.label {
+  display: block;
+}
+
+.primary {
+  background-color: var(--color-navy);
+  color: var(--color-white);
+}
+
+.primary:hover {
+  background-color: var(--color-teal);
+}
+
+.primary .arrowIcon {
+  background: var(--color-white);
+  color: var(--color-navy);
+}
+
+.light {
+  background-color: var(--color-white);
+  color: var(--color-navy);
+}
+
+.light:hover {
+  background-color: var(--color-teal);
+  color: var(--color-white);
+}
+
+.light:hover .arrowIcon {
+  background: var(--color-white);
+  color: var(--color-navy);
+}
+
+.light .arrowIcon {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+.outline {
+  background: transparent;
+  color: var(--color-navy);
+  border-color: rgba(11, 29, 58, 0.2);
+}
+
+.outline:hover {
+  border-color: var(--color-teal);
+  color: var(--color-teal);
+}
+
+.outline .arrowIcon {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+.outline:hover .arrowIcon {
+  background: var(--color-teal);
+  color: var(--color-white);
+}
+
+.arrowIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+@media (max-width: 640px) {
+  .btn {
+    width: 100%;
+    justify-content: space-between;
+    font-size: 0.9375rem;
+    padding: 8px 8px 8px 22px;
+  }
+
+  .arrowIcon {
+    width: 36px;
+    height: 36px;
+  }
+}

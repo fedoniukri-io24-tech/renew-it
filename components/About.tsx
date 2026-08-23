@@ -1,68 +1,92 @@
+import type { CSSProperties } from "react";
+import Image from "next/image";
+import CtaButton from "./CtaButton";
 import styles from "./About.module.css";
 
-const STEPS = [
-  {
-    title: "Tell us what’s due",
-    text: "Share the document type and expiry — visa, Emirates ID, license, or other paperwork.",
-  },
-  {
-    title: "We handle the process",
-    text: "Our local team prepares, submits, and tracks everything with clear status updates.",
-  },
-  {
-    title: "You stay compliant",
-    text: "Get renewals completed on time — without the queues, portals, and guesswork.",
-  },
+const HIGHLIGHTS = [
+  { label: "10+ years in the UAE", icon: "/clients-icons/steroids.svg" },
+  { label: "Certified CSP", icon: "/clients-icons/vape.svg" },
+  { label: "Dubai-based team", icon: "/clients-icons/gaming.svg" },
+  { label: "10+ languages", icon: "/clients-icons/subscriptions.svg" },
+  { label: "All 7 Emirates", icon: "/clients-icons/courses.svg" },
 ];
 
 export default function About() {
   return (
-    <>
-      <section id="how-it-works" className={styles.stepsSection}>
-        <div className={`container ${styles.stepsInner}`}>
-          <div className={styles.intro}>
-            <h2 className={styles.title}>Three steps. Zero bureaucracy stress.</h2>
-          </div>
-
-          <ol className={styles.steps}>
-            {STEPS.map((step, index) => (
-              <li key={step.title} className={styles.step}>
-                <span className={styles.stepNum}>0{index + 1}</span>
-                <h3 className={styles.stepTitle}>{step.title}</h3>
-                <p className={styles.stepText}>{step.text}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section id="about" className={styles.aboutSection}>
-        <div className={`container ${styles.aboutInner}`}>
-          <h2 className={styles.aboutTitle}>
-            Fast, reliable, and local — built for Dubai compliance.
+    <section id="about" className={styles.section}>
+      <div className={`container ${styles.inner}`}>
+        <div className={styles.copyCol} data-reveal>
+          <h2 className={styles.title}>
+            10+ years of UAE experience behind every renewal.
           </h2>
-          <p className={styles.aboutText}>
-            Renew-It! is a document renewal service for individuals and companies in
-            Dubai and the UAE. We keep you legally compliant so you can focus on
-            living and working — not chasing paperwork.{" "}
-            <strong>Due? We renew.</strong>
-          </p>
-          <a href="#contact" className={styles.btnPrimary}>
-            Start a renewal
-            <span className={styles.arrowIcon} aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path
-                  d="M2 7h10M8 3l4 4-4 4"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </span>
-          </a>
+
+          <div className={styles.copy}>
+            <p>
+              Renew-It is a Dubai-based Corporate Service Provider helping
+              individuals and businesses keep their documents valid, compliant and
+              up to date.
+            </p>
+            <p>
+              For more than 10 years, our team has worked with UAE government
+              authorities, free zones and regulators across corporate, residency
+              and immigration services.
+            </p>
+            <p>
+              We are an officially certified Corporate Service Provider and an
+              official partner of Dubai’s Department of Economy and Tourism.
+            </p>
+            <p>
+              Our professional multilingual team speaks 10+ languages and supports
+              clients across all 7 Emirates.
+            </p>
+          </div>
         </div>
-      </section>
-    </>
+
+        <div
+          className={styles.visual}
+          data-reveal="left"
+          style={{ "--reveal-delay": 80 } as CSSProperties}
+        >
+          <Image
+            src="/dubai/skyline.jpg"
+            alt="Dubai skyline with Burj Khalifa"
+            fill
+            sizes="(max-width: 900px) 100vw, 45vw"
+            className={styles.photo}
+            priority
+          />
+          <div className={styles.visualVeil} />
+        </div>
+
+        <ul className={styles.highlights}>
+          {HIGHLIGHTS.map((item, index) => (
+            <li
+              key={item.label}
+              data-reveal="scale"
+              style={{ "--reveal-delay": index * 70 } as CSSProperties}
+            >
+              <Image
+                src={item.icon}
+                alt=""
+                width={48}
+                height={48}
+                className={styles.highlightIcon}
+              />
+              <span>{item.label}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div
+          className={styles.ctaWrap}
+          data-reveal
+          style={{ "--reveal-delay": 120 } as CSSProperties}
+        >
+          <CtaButton href="#contact" variant="light">
+            Get my renewal quote
+          </CtaButton>
+        </div>
+      </div>
+    </section>
   );
 }

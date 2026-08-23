@@ -1,9 +1,38 @@
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  padding-top: max(calc(var(--page-gutter) + 8px), env(safe-area-inset-top));
+  padding-bottom: 12px;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease,
+    backdrop-filter 0.25s ease, padding 0.25s ease;
+}
+
+.barScrolled {
+  padding-top: max(12px, env(safe-area-inset-top));
+  padding-bottom: 12px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(11, 29, 58, 0.06), 0 12px 40px rgba(11, 29, 58, 0.08);
+}
+
+.barOpen {
+  background: var(--color-white);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
 .header {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 28px;
+  width: 100%;
   z-index: 30;
 }
 
@@ -34,7 +63,7 @@
 
 .navLinks {
   display: flex;
-  gap: 32px;
+  gap: 26px;
   list-style: none;
 }
 
@@ -42,9 +71,9 @@
   font-family: var(--font-ui);
   text-decoration: none;
   color: #061225;
-  font-size: var(--text-ui);
+  font-size: 1.0625rem;
   font-weight: 600;
-  letter-spacing: -0.011em;
+  letter-spacing: -0.014em;
   transition: color 0.2s ease;
   white-space: nowrap;
 }
@@ -58,24 +87,29 @@
   font-family: var(--font-ui);
   background-color: var(--color-navy);
   color: var(--color-white);
-  padding: 10px 10px 10px 26px;
+  padding: 8px 8px 8px 22px;
   border-radius: 999px;
   text-decoration: none;
-  font-size: var(--text-ui);
+  font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   display: inline-flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   white-space: nowrap;
-  transition: background-color 0.2s ease, opacity 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease;
   line-height: 1.2;
   box-sizing: border-box;
+  border: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .btnHeader:hover,
 .btnHeaderMobile:hover {
   background-color: var(--color-teal);
+  transform: translateY(-1px);
 }
 
 .btnLabel {
@@ -86,8 +120,8 @@
 .arrowIcon {
   background: var(--color-white);
   color: var(--color-navy);
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -95,43 +129,49 @@
   flex-shrink: 0;
 }
 
-.burger {
+.menuToggle {
   display: none;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 6px;
-  width: 44px;
-  height: 44px;
   background: transparent;
   border: none;
-  padding: 0;
+  padding: 6px 0;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-navy);
+  cursor: pointer;
   position: relative;
   z-index: 110;
+  line-height: 1.2;
 }
 
-.burgerLine {
+.menuToggleInner {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.menuBracket {
+  font-weight: 600;
+  color: var(--color-navy);
+}
+
+.menuToggleLabel {
   display: block;
-  width: 24px;
-  height: 2.5px;
-  background: var(--color-navy);
-  transition: transform 0.25s ease, opacity 0.2s ease, background-color 0.2s ease;
+  text-transform: lowercase;
 }
 
-.burgerOpen .burgerLine {
-  background: var(--color-navy);
+.menuToggleArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-navy);
+  transition: transform 0.25s ease;
 }
 
-.burgerLineOpenTop {
-  transform: translateY(8.5px) rotate(45deg);
-}
-
-.burgerLineOpenHide {
-  opacity: 0;
-}
-
-.burgerLineOpenBottom {
-  transform: translateY(-8.5px) rotate(-45deg);
+.menuToggleOpen .menuToggleArrow {
+  transform: rotate(90deg);
 }
 
 .mobileMenu {
@@ -139,6 +179,10 @@
 }
 
 @media (max-width: 900px) {
+  .header {
+    gap: 20px;
+  }
+
   .nav {
     display: none;
   }
@@ -148,10 +192,10 @@
   }
 
   .logoImg {
-    height: 38px;
+    height: 42px;
   }
 
-  .burger {
+  .menuToggle {
     display: flex;
   }
 
@@ -166,7 +210,7 @@
     height: 100%;
     height: 100dvh;
     background: var(--color-white);
-    padding: calc(88px + env(safe-area-inset-top)) 28px
+    padding: calc(88px + env(safe-area-inset-top)) var(--page-gutter)
       calc(32px + env(safe-area-inset-bottom));
     opacity: 0;
     visibility: hidden;
@@ -184,12 +228,14 @@
     flex: 1;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   .mobileNav ul {
     list-style: none;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 8px;
     width: 100%;
   }
@@ -197,13 +243,19 @@
   .mobileNav a {
     font-family: var(--font-display);
     display: block;
-    padding: 14px 0;
+    padding: 16px 0;
     text-decoration: none;
     color: var(--color-navy);
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1.15;
+    border-bottom: 1px solid var(--color-stone-line);
+    text-align: center;
+    width: 100%;
+  }
+
+  .mobileNav li:last-child a {
     border-bottom: none;
   }
 
@@ -212,24 +264,32 @@
     max-width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 12px 12px 28px;
-    font-size: 17px;
-    min-height: 60px;
+    padding: 8px 8px 8px 22px;
+    font-size: 16px;
+    min-height: 0;
   }
 
   .btnHeaderMobile .arrowIcon {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
   }
 }
 
 @media (max-width: 640px) {
+  .bar {
+    padding-bottom: 10px;
+  }
+
   .logoImg {
-    height: 34px;
+    height: 40px;
+  }
+
+  .header {
+    gap: 16px;
   }
 
   .mobileMenu {
-    padding: calc(80px + env(safe-area-inset-top)) 22px
+    padding: calc(80px + env(safe-area-inset-top)) var(--page-gutter-mobile)
       calc(28px + env(safe-area-inset-bottom));
   }
 
@@ -239,13 +299,13 @@
   }
 
   .btnHeaderMobile {
-    font-size: 16px;
-    padding: 12px 12px 12px 24px;
-    min-height: 58px;
+    font-size: 15px;
+    padding: 8px 8px 8px 20px;
+    min-height: 0;
   }
 
   .btnHeaderMobile .arrowIcon {
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
   }
 }

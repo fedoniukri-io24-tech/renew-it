@@ -1,31 +1,257 @@
 .footer {
-  border-top: 1px solid var(--color-stone-line);
-  background: var(--color-white);
-  padding: 28px 0;
+  background: var(--color-navy);
+  color: var(--color-white);
+  padding: 56px 0 32px;
 }
 
 .inner {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 40px 48px;
+  align-items: start;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.brand {
+  max-width: 320px;
 }
 
 .logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   text-decoration: none;
+  margin-bottom: 20px;
 }
 
 .logoImg {
   width: auto;
-  height: 36px;
+  height: 40px;
   object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.tagline {
+  font-family: var(--font-ui);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-sky);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.pitch {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.navList a {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: color 0.2s ease;
+}
+
+.navList a:hover {
+  color: var(--color-sky);
+}
+
+.ctaBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ctaBtn {
+  width: 100%;
+  max-width: 320px;
+}
+
+.ctaLabel {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.meta {
+  max-width: 36ch;
+}
+
+.location {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.coverage {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .copy {
   font-family: var(--font-ui);
-  font-size: 15px;
-  color: var(--color-ink-muted);
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+@media (max-width: 900px) {
+  .top {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .brand {
+    max-width: none;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .tagline {
+    margin-bottom: 8px;
+  }
+
+  .pitch {
+    max-width: 36ch;
+    margin: 0 auto;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: center;
+  }
+
+  .navList {
+    gap: 12px;
+  }
+
+  .ctaBlock {
+    align-items: center;
+    width: 100%;
+  }
+
+  .ctaBtn {
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding: 48px 0 28px;
+  }
+
+  .inner {
+    gap: 36px;
+  }
+
+  .top {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-bottom: 32px;
+    text-align: center;
+  }
+
+  .brand {
+    padding-bottom: 8px;
+  }
+
+  .logoImg {
+    height: 42px;
+  }
+
+  .pitch {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .nav {
+    width: 100%;
+    padding: 8px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .navList {
+    gap: 0;
+    width: 100%;
+  }
+
+  .navList li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .navList li:last-child {
+    border-bottom: none;
+  }
+
+  .navList a {
+    display: block;
+    font-size: 1.0625rem;
+    padding: 14px 0;
+  }
+
+  .ctaBlock {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .ctaLabel {
+    font-size: 1.125rem;
+  }
+
+  .ctaBtn {
+    max-width: none;
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .meta {
+    max-width: 100%;
+  }
+
+  .copy {
+    font-size: 0.75rem;
+  }
 }
