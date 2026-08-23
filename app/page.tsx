@@ -16,7 +16,7 @@ import { createPageMetadata } from "@/lib/metadata";
 import { SITE } from "@/lib/site";
 
 export const metadata = createPageMetadata({
-  title: SITE.tagline,
+  title: SITE.title,
   description: SITE.description,
   path: "/",
 });

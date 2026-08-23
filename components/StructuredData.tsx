@@ -1,5 +1,5 @@
 import { FAQ_ITEMS } from "@/lib/faq";
-import { absoluteUrl, SITE, SITE_URL } from "@/lib/site";
+import { absoluteUrl, SITE, SITE_SERVICES, SITE_URL } from "@/lib/site";
 
 function JsonLdScript({ data }: { data: Record<string, unknown> }) {
   return (
@@ -10,7 +10,30 @@ function JsonLdScript({ data }: { data: Record<string, unknown> }) {
   );
 }
 
+function buildServiceOffers(services: readonly string[]) {
+  return services.map((name) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name,
+      provider: {
+        "@id": `${SITE_URL}/#organization`,
+      },
+      areaServed: {
+        "@type": "Country",
+        name: SITE.location.country,
+      },
+    },
+  }));
+}
+
 export default function StructuredData() {
+  const allServices = [
+    ...SITE_SERVICES.corporate,
+    ...SITE_SERVICES.visas,
+    ...SITE_SERVICES.other,
+  ];
+
   const organization = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -23,6 +46,9 @@ export default function StructuredData() {
     description: SITE.description,
     email: SITE.email,
     telephone: SITE.phoneE164,
+    foundingDate: "2014",
+    slogan: SITE.tagline,
+    knowsAbout: SITE.keywords,
     areaServed: {
       "@type": "Country",
       name: SITE.location.country,
@@ -65,8 +91,8 @@ export default function StructuredData() {
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 25.2048,
-      longitude: 55.2708,
+      latitude: SITE.location.latitude,
+      longitude: SITE.location.longitude,
     },
     areaServed: {
       "@type": "Country",
@@ -84,6 +110,11 @@ export default function StructuredData() {
       "Free zone license renewal",
       "Mainland company renewal",
     ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "UAE Renewal Services",
+      itemListElement: buildServiceOffers(allServices),
+    },
   };
 
   const website = {
@@ -104,7 +135,7 @@ export default function StructuredData() {
     "@type": "WebPage",
     "@id": `${SITE_URL}/#webpage`,
     url: SITE_URL,
-    name: `${SITE.tagline} | ${SITE.name}`,
+    name: buildFullTitle(),
     description: SITE.description,
     isPartOf: {
       "@id": `${SITE_URL}/#website`,
@@ -112,7 +143,43 @@ export default function StructuredData() {
     about: {
       "@id": `${SITE_URL}/#organization`,
     },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: absoluteUrl(SITE.socialImage),
+      width: 1672,
+      height: 941,
+      caption: SITE.socialImageAlt,
+    },
     inLanguage: SITE.language,
+    breadcrumb: {
+      "@id": `${SITE_URL}/#breadcrumb`,
+    },
+  };
+
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${SITE_URL}/#breadcrumb`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+    ],
+  };
+
+  const serviceList = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${SITE_URL}/#services`,
+    name: "UAE documents Renew-It can renew",
+    itemListElement: allServices.map((name, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name,
+    })),
   };
 
   const faqPage = {
@@ -135,7 +202,13 @@ export default function StructuredData() {
       <JsonLdScript data={localBusiness} />
       <JsonLdScript data={website} />
       <JsonLdScript data={webPage} />
+      <JsonLdScript data={breadcrumb} />
+      <JsonLdScript data={serviceList} />
       <JsonLdScript data={faqPage} />
     </>
   );
+}
+
+function buildFullTitle(): string {
+  return `${SITE.title} | ${SITE.name}`;
 }

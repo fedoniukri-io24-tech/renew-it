@@ -8,7 +8,7 @@ import styles from "./not-found.module.css";
 export const metadata = createPageMetadata({
   title: "Page not found",
   description:
-    "The page you are looking for does not exist. Return to Renew-It for UAE renewals, visas, licenses and corporate services.",
+    "This page does not exist. Return to Renew-It for UAE trade license, visa, Emirates ID and corporate document renewals across all 7 Emirates.",
   path: "/404",
   noIndex: true,
 });
