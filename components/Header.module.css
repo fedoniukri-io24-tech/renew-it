@@ -53,6 +53,13 @@
   width: auto;
   height: 44px;
   object-fit: contain;
+  filter: brightness(0) invert(1);
+  transition: filter 0.25s ease;
+}
+
+.barScrolled .logoImg,
+.barOpen .logoImg {
+  filter: none;
 }
 
 .nav {
@@ -70,15 +77,27 @@
 .navLinks a {
   font-family: var(--font-ui);
   text-decoration: none;
-  color: #061225;
+  color: #ffffff;
   font-size: 1.0625rem;
   font-weight: 600;
   letter-spacing: -0.014em;
   transition: color 0.2s ease;
   white-space: nowrap;
+  text-shadow: 0 1px 12px rgba(6, 18, 37, 0.35);
+}
+
+.barScrolled .navLinks a,
+.barOpen .navLinks a {
+  color: #061225;
+  text-shadow: none;
 }
 
 .navLinks a:hover {
+  color: var(--color-sky);
+}
+
+.barScrolled .navLinks a:hover,
+.barOpen .navLinks a:hover {
   color: var(--color-teal);
 }
 
@@ -139,11 +158,19 @@
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--color-navy);
+  color: #ffffff;
   cursor: pointer;
   position: relative;
   z-index: 110;
   line-height: 1.2;
+  text-shadow: 0 1px 12px rgba(6, 18, 37, 0.35);
+  transition: color 0.25s ease;
+}
+
+.barScrolled .menuToggle,
+.barOpen .menuToggle {
+  color: var(--color-navy);
+  text-shadow: none;
 }
 
 .menuToggleInner {
@@ -154,7 +181,7 @@
 
 .menuBracket {
   font-weight: 600;
-  color: var(--color-navy);
+  color: inherit;
 }
 
 .menuToggleLabel {
@@ -166,7 +193,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-navy);
+  color: inherit;
   transition: transform 0.25s ease;
 }
 
