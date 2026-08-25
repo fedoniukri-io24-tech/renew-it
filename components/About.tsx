@@ -20,7 +20,7 @@ export default function About() {
             10+ years of UAE experience behind every renewal.
           </h2>
 
-          <div className={styles.copy}>
+          <div className={styles.copy} lang="en">
             <p>
               Renew-It is a Dubai-based Corporate Service Provider helping
               individuals and businesses keep their documents valid, compliant and
@@ -48,14 +48,14 @@ export default function About() {
           style={{ "--reveal-delay": 80 } as CSSProperties}
         >
           <Image
-            src="/dubai/skyline.jpg"
-            alt="Dubai skyline with Burj Khalifa"
-            fill
+            src="/team/about-team.jpg"
+            alt="Renew-It team collaborating on a Dubai balcony"
+            width={928}
+            height={1152}
             sizes="(max-width: 900px) 100vw, 45vw"
             className={styles.photo}
             priority
           />
-          <div className={styles.visualVeil} />
         </div>
 
         <ul className={styles.highlights}>

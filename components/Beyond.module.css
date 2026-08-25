@@ -12,26 +12,18 @@
 
 .visual {
   position: relative;
-  min-height: 720px;
+  width: 100%;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  align-self: stretch;
+  align-self: start;
+  line-height: 0;
 }
 
 .photo {
-  object-fit: cover;
-  object-position: center 30%;
-}
-
-.visualVeil {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    transparent 45%,
-    rgba(11, 29, 58, 0.35) 100%
-  );
-  pointer-events: none;
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
 }
 
 .main {
@@ -159,8 +151,9 @@
   }
 
   .visual {
-    min-height: 420px;
     order: -1;
+    max-width: 520px;
+    margin: 0 auto;
   }
 
   .title {
@@ -170,7 +163,7 @@
 
 @media (max-width: 640px) {
   .visual {
-    min-height: 320px;
+    max-width: none;
   }
 
   .guarantee {

@@ -28,13 +28,13 @@ export default function Beyond() {
           style={{ "--reveal-delay": 60 } as CSSProperties}
         >
           <Image
-            src="/dubai/downtown.jpg"
-            alt="Dubai downtown skyline"
-            fill
+            src="/team/meeting-balcony.jpg"
+            alt="Renew-It team meeting on a Dubai balcony overlooking the skyline"
+            width={1024}
+            height={1024}
             sizes="(max-width: 900px) 100vw, 48vw"
             className={styles.photo}
           />
-          <div className={styles.visualVeil} />
         </div>
 
         <div className={styles.main}>

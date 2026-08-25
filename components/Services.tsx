@@ -21,7 +21,7 @@ const CATEGORIES = [
   },
   {
     title: "Visas & Residency",
-    icon: "/clients-icons/forex.svg",
+    icon: "/clients-icons/passport.svg",
     items: [
       "Investor Visas",
       "Golden Visas",
@@ -34,7 +34,7 @@ const CATEGORIES = [
   },
   {
     title: "Other Renewals",
-    icon: "/clients-icons/marketplaces.svg",
+    icon: "/clients-icons/permits.svg",
     items: [
       "Work Permits",
       "Government Approvals",

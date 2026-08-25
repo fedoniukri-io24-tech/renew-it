@@ -11,6 +11,7 @@ import FAQ from "@/components/FAQ";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import PhotoBreak from "@/components/PhotoBreak";
+import TeamPhoto from "@/components/TeamPhoto";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { createPageMetadata } from "@/lib/metadata";
 import { SITE } from "@/lib/site";
@@ -44,6 +45,13 @@ export default function Home() {
         <Why />
         <Transparency />
         <HowItWorks />
+        <TeamPhoto
+          src="/team/photo-break-team.png"
+          alt="Renew-It consultants reviewing documents against the Dubai skyline"
+          width={1536}
+          height={1024}
+          caption="Dubai-based team. Clear documents. One point of contact."
+        />
         <Reminders />
         <FAQ />
         <ContactSection />

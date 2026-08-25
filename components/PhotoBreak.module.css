@@ -30,8 +30,17 @@
   height: clamp(380px, 44vw, 540px);
 }
 
+.frameRatio {
+  height: auto;
+  aspect-ratio: var(--photo-ratio, 3 / 2);
+}
+
 .image {
   object-fit: cover;
+}
+
+.imageRatio {
+  object-fit: contain;
 }
 
 .frame:hover .image {
@@ -137,6 +146,10 @@
 
   .frame.short {
     height: clamp(440px, 92vw, 560px);
+  }
+
+  .frameRatio {
+    height: auto;
   }
 
   .frameFull .content {

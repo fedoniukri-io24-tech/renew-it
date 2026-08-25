@@ -15,6 +15,8 @@ type PhotoBreakProps = {
   short?: boolean;
   fullWidth?: boolean;
   position?: string;
+  /** CSS aspect-ratio value, e.g. "3 / 2" — keeps original photo proportions */
+  aspectRatio?: string;
 };
 
 export default function PhotoBreak({
@@ -29,8 +31,10 @@ export default function PhotoBreak({
   short = false,
   fullWidth = false,
   position = "center",
+  aspectRatio,
 }: PhotoBreakProps) {
   const heading = title || caption;
+  const preserveRatio = Boolean(aspectRatio);
 
   return (
     <section
@@ -40,15 +44,16 @@ export default function PhotoBreak({
       <div
         className={`${styles.frame} ${tall ? styles.tall : ""} ${short ? styles.short : ""} ${
           fullWidth ? styles.frameFull : ""
-        }`}
+        } ${preserveRatio ? styles.frameRatio : ""}`}
+        style={preserveRatio ? ({ "--photo-ratio": aspectRatio } as CSSProperties) : undefined}
       >
         <Image
           src={src}
           alt={alt}
           fill
           sizes="100vw"
-          className={styles.image}
-          style={{ objectPosition: position }}
+          className={preserveRatio ? styles.imageRatio : styles.image}
+          style={preserveRatio ? undefined : { objectPosition: position }}
           priority={false}
         />
         <div className={styles.veil} />
