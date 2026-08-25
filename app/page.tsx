@@ -4,6 +4,7 @@ import About from "@/components/About";
 import Services from "@/components/Services";
 import Beyond from "@/components/Beyond";
 import Why from "@/components/Why";
+import PriceOffer from "@/components/PriceOffer";
 import Transparency from "@/components/Transparency";
 import HowItWorks from "@/components/HowItWorks";
 import Reminders from "@/components/Reminders";
@@ -43,6 +44,7 @@ export default function Home() {
           position="center 40%"
         />
         <Why />
+        <PriceOffer />
         <Transparency />
         <HowItWorks />
         <TeamPhoto

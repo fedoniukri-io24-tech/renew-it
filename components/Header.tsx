@@ -125,6 +125,9 @@ export default function Header() {
           id="mobile-menu"
           className={`${styles.mobileMenu} ${isOpen ? styles.mobileMenuOpen : ""}`}
         >
+          <div className={styles.menuBlob} aria-hidden="true" />
+          <div className={styles.menuBlobSecondary} aria-hidden="true" />
+
           <nav className={styles.mobileNav} aria-label="Mobile navigation">
             <ul>
               {NAV_LINKS.map((link) => (

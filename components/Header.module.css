@@ -243,6 +243,42 @@
     visibility: hidden;
     pointer-events: none;
     transition: opacity 0.25s ease, visibility 0.25s ease;
+    overflow: hidden;
+  }
+
+  .menuBlob,
+  .menuBlobSecondary {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(8px);
+  }
+
+  .menuBlob {
+    width: min(72vw, 340px);
+    height: min(72vw, 340px);
+    top: -8%;
+    right: -22%;
+    background: radial-gradient(
+      circle at 35% 40%,
+      rgba(0, 163, 163, 0.42) 0%,
+      rgba(79, 195, 227, 0.22) 48%,
+      transparent 72%
+    );
+  }
+
+  .menuBlobSecondary {
+    width: min(58vw, 280px);
+    height: min(58vw, 280px);
+    bottom: 8%;
+    left: -24%;
+    background: radial-gradient(
+      circle at 55% 45%,
+      rgba(79, 195, 227, 0.34) 0%,
+      rgba(0, 163, 163, 0.16) 50%,
+      transparent 72%
+    );
   }
 
   .mobileMenuOpen {
@@ -252,6 +288,8 @@
   }
 
   .mobileNav {
+    position: relative;
+    z-index: 1;
     flex: 1;
     display: flex;
     align-items: center;
@@ -287,6 +325,8 @@
   }
 
   .btnHeaderMobile {
+    position: relative;
+    z-index: 1;
     width: 100%;
     max-width: 100%;
     justify-content: space-between;

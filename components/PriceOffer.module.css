@@ -1,0 +1,153 @@
+.section {
+  background: var(--color-teal);
+  padding: clamp(72px, 10vw, 112px) 0;
+  color: var(--color-white);
+  overflow: hidden;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(28px, 4vw, 40px);
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--color-white);
+  text-wrap: balance;
+  max-width: 18ch;
+  margin-bottom: 8px;
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.18em;
+  margin: 4px 0 12px;
+  line-height: 0.9;
+  color: var(--color-white);
+}
+
+.currency {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  align-self: flex-start;
+  margin-top: 0.28em;
+}
+
+.amount {
+  font-family: var(--font-display);
+  font-size: clamp(5.5rem, 14vw, 9.5rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+}
+
+.subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.95);
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 42rem;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.details p {
+  font-family: var(--font-body);
+  font-size: clamp(1.0625rem, 1.4vw, 1.1875rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+.emphasis {
+  font-weight: 700;
+  color: var(--color-white) !important;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.cta {
+  min-width: 260px;
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 64px 0;
+  }
+
+  .inner {
+    gap: 24px;
+    align-items: stretch;
+    text-align: left;
+  }
+
+  .main {
+    align-items: flex-start;
+  }
+
+  .title {
+    max-width: none;
+    font-size: 1.75rem;
+  }
+
+  .price {
+    justify-content: flex-start;
+  }
+
+  .amount {
+    font-size: clamp(4.75rem, 22vw, 6.5rem);
+  }
+
+  .subtitle {
+    max-width: none;
+    font-size: 1.1875rem;
+  }
+
+  .details {
+    max-width: none;
+  }
+
+  .actions {
+    justify-content: stretch;
+  }
+
+  .cta {
+    width: 100%;
+    min-width: 0;
+  }
+}

@@ -327,20 +327,21 @@
   }
 
   .heroTitle {
-    font-size: 2.5rem;
-    margin-bottom: 18px;
+    font-size: clamp(3rem, 11vw, 3.75rem);
+    margin-bottom: 20px;
     max-width: none;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.035em;
   }
 
   .heroSubtitle {
-    font-size: 1.0625rem;
+    font-size: 1.1875rem;
     margin-bottom: 32px;
     max-width: 100%;
+    gap: 10px;
   }
 
   .subtitleLead {
-    font-size: 1.125rem;
+    font-size: 1.3125rem;
   }
 
   .ctaGroup {
@@ -401,7 +402,7 @@
 
 @media (max-width: 400px) {
   .heroTitle {
-    font-size: 2.125rem;
+    font-size: clamp(2.75rem, 12vw, 3.25rem);
   }
 
   .heroFrame {
