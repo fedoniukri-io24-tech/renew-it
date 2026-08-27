@@ -9,7 +9,7 @@ export default function Hero() {
         <div className={styles.heroMedia}>
           <Image
             src="/hero.png"
-            alt="Renew-It! office in Dubai"
+            alt="Renew-It Dubai office — UAE trade license, visa and Emirates ID renewals"
             fill
             priority
             sizes="(max-width: 768px) 100vw, 92vw"

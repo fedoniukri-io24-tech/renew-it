@@ -35,7 +35,7 @@ function buildRobots(noIndex = false): NonNullable<Metadata["robots"]> {
       index: true,
       follow: true,
       "max-video-preview": -1,
-      "max-image-preview": "large",
+      "max-image-preview": "large" as const,
       "max-snippet": -1,
     },
   };
@@ -51,9 +51,10 @@ function buildGeoTags(): NonNullable<Metadata["other"]> {
     coverage: SITE.coverage,
     target: "all",
     audience: "individuals, families, businesses in the UAE",
-    "revisit-after": "7 days",
+    "revisit-after": "3 days",
     rating: "general",
     distribution: "global",
+    "og:locale:alternate": "ar_AE",
   };
 }
 
@@ -103,6 +104,11 @@ export function createPageMetadata(options: PageMetadataOptions = {}): Metadata 
     keywords: [...SITE.keywords],
     alternates: {
       canonical,
+      languages: {
+        "en-AE": canonical,
+        en: canonical,
+        "x-default": canonical,
+      },
     },
     ...buildSocialMetadata(pageTitle, description, canonical),
     robots: buildRobots(options.noIndex),
@@ -126,7 +132,8 @@ export const rootMetadata: Metadata = {
   creator: SITE.name,
   publisher: SITE.name,
   category: "business",
-  classification: "Corporate Service Provider, UAE renewals, immigration services",
+  classification:
+    "Corporate Service Provider, UAE renewals, immigration services, trade license renewal Dubai",
   formatDetection: {
     email: false,
     address: false,
@@ -148,6 +155,11 @@ export const rootMetadata: Metadata = {
   },
   alternates: {
     canonical: SITE_URL,
+    languages: {
+      "en-AE": SITE_URL,
+      en: SITE_URL,
+      "x-default": SITE_URL,
+    },
   },
   ...buildSocialMetadata(SITE.title, SITE.description, SITE_URL),
   robots: buildRobots(),

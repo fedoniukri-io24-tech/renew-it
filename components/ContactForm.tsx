@@ -31,9 +31,13 @@ function isValidEmail(value: string) {
 
 type ContactFormProps = {
   idPrefix?: string;
+  formSource?: "contact" | "quote-modal";
 };
 
-export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
+export default function ContactForm({
+  idPrefix = "",
+  formSource = "contact",
+}: ContactFormProps) {
   const fieldId = (name: string) => (idPrefix ? `${idPrefix}-${name}` : name);
   const [form, setForm] = useState<FormState>(INITIAL_STATE);
   const [errors, setErrors] = useState<Partial<FormState>>({});
@@ -95,7 +99,7 @@ export default function ContactForm({ idPrefix = "" }: ContactFormProps) {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, formSource }),
       });
 
       if (!res.ok) throw new Error("Request failed");

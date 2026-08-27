@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${inter.variable}`}>
+    <html lang="en-AE" className={`${manrope.variable} ${inter.variable}`}>
       <body>
         <StructuredData />
         <ScrollReveal />

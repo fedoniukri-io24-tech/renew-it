@@ -1,30 +1,8 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import CtaButton from "./CtaButton";
+import { HOW_IT_WORKS_STEPS } from "@/lib/how-it-works";
 import styles from "./HowItWorks.module.css";
-
-const STEPS = [
-  {
-    title: "Tell us what needs to be renewed",
-    text: "Send us the document and its expiry date.",
-    icon: "/clients-icons/step-share.svg",
-  },
-  {
-    title: "Get a clear quote",
-    text: "We show you the government fees, third-party costs and our service fee separately.",
-    icon: "/clients-icons/step-quote.svg",
-  },
-  {
-    title: "We handle the process",
-    text: "Our team prepares, submits and follows up on the renewal while keeping you updated.",
-    icon: "/clients-icons/step-process.svg",
-  },
-  {
-    title: "Receive your renewed document",
-    text: "Once completed, we send you the renewed document and can track its next expiry date for you.",
-    icon: "/clients-icons/step-deliver.svg",
-  },
-];
 
 export default function HowItWorks() {
   return (
@@ -33,7 +11,7 @@ export default function HowItWorks() {
         <h2 className={styles.title} data-reveal>Renew in 4 simple steps.</h2>
 
         <ol className={styles.steps}>
-          {STEPS.map((step, index) => (
+          {HOW_IT_WORKS_STEPS.map((step, index) => (
             <li
               key={step.title}
               className={styles.step}

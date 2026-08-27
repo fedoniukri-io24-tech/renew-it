@@ -1,4 +1,5 @@
 import { FAQ_ITEMS } from "@/lib/faq";
+import { HOW_IT_WORKS_STEPS, LICENSE_SERVICE_FEE } from "@/lib/how-it-works";
 import { absoluteUrl, SITE, SITE_SERVICES, SITE_URL } from "@/lib/site";
 
 function JsonLdScript({ data }: { data: Record<string, unknown> }) {
@@ -36,28 +37,50 @@ export default function StructuredData() {
 
   const organization = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "LocalBusiness"],
     "@id": `${SITE_URL}/#organization`,
     name: SITE.name,
     legalName: SITE.legalName,
     url: SITE_URL,
-    logo: absoluteUrl(SITE.logo),
+    logo: {
+      "@type": "ImageObject",
+      url: absoluteUrl(SITE.logo),
+    },
     image: absoluteUrl(SITE.socialImage),
     description: SITE.description,
     email: SITE.email,
     telephone: SITE.phoneE164,
     foundingDate: "2014",
     slogan: SITE.tagline,
-    knowsAbout: SITE.keywords,
-    areaServed: {
-      "@type": "Country",
-      name: SITE.location.country,
-    },
+    knowsAbout: SITE.keywords.slice(0, 20),
+    areaServed: [
+      {
+        "@type": "Country",
+        name: SITE.location.country,
+      },
+      {
+        "@type": "AdministrativeArea",
+        name: "Dubai",
+      },
+      {
+        "@type": "AdministrativeArea",
+        name: "Abu Dhabi",
+      },
+      {
+        "@type": "AdministrativeArea",
+        name: "Sharjah",
+      },
+    ],
     address: {
       "@type": "PostalAddress",
       addressLocality: SITE.location.city,
       addressRegion: SITE.location.region,
       addressCountry: SITE.location.countryCode,
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: SITE.location.latitude,
+      longitude: SITE.location.longitude,
     },
     contactPoint: [
       {
@@ -82,7 +105,7 @@ export default function StructuredData() {
     description: SITE.shortDescription,
     telephone: SITE.phoneE164,
     email: SITE.email,
-    priceRange: "$$",
+    priceRange: "AED 299+",
     address: {
       "@type": "PostalAddress",
       addressLocality: SITE.location.city,
@@ -115,6 +138,19 @@ export default function StructuredData() {
       name: "UAE Renewal Services",
       itemListElement: buildServiceOffers(allServices),
     },
+    makesOffer: {
+      "@type": "Offer",
+      name: LICENSE_SERVICE_FEE.name,
+      description: LICENSE_SERVICE_FEE.description,
+      price: LICENSE_SERVICE_FEE.amount,
+      priceCurrency: LICENSE_SERVICE_FEE.currency,
+      url: absoluteUrl("/#offer"),
+      availability: "https://schema.org/InStock",
+      areaServed: {
+        "@type": "Country",
+        name: SITE.location.country,
+      },
+    },
   };
 
   const website = {
@@ -123,10 +159,16 @@ export default function StructuredData() {
     "@id": `${SITE_URL}/#website`,
     url: SITE_URL,
     name: SITE.name,
+    alternateName: ["Renew It", "RenewIt", "renew-it.ae"],
     description: SITE.shortDescription,
-    inLanguage: SITE.language,
+    inLanguage: ["en-AE", "en"],
     publisher: {
       "@id": `${SITE_URL}/#organization`,
+    },
+    potentialAction: {
+      "@type": "CommunicateAction",
+      name: "Request a renewal quote",
+      target: absoluteUrl("/#contact"),
     },
   };
 
@@ -150,9 +192,17 @@ export default function StructuredData() {
       height: 941,
       caption: SITE.socialImageAlt,
     },
-    inLanguage: SITE.language,
+    inLanguage: "en-AE",
+    dateModified: new Date().toISOString().slice(0, 10),
     breadcrumb: {
       "@id": `${SITE_URL}/#breadcrumb`,
+    },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: [".heroTitle", ".heroSubtitle"],
+    },
+    mainEntity: {
+      "@id": `${SITE_URL}/#localbusiness`,
     },
   };
 
@@ -167,6 +217,18 @@ export default function StructuredData() {
         name: "Home",
         item: SITE_URL,
       },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: absoluteUrl("/#services"),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Contact",
+        item: absoluteUrl("/#contact"),
+      },
     ],
   };
 
@@ -175,10 +237,34 @@ export default function StructuredData() {
     "@type": "ItemList",
     "@id": `${SITE_URL}/#services`,
     name: "UAE documents Renew-It can renew",
+    numberOfItems: allServices.length,
     itemListElement: allServices.map((name, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name,
+      url: absoluteUrl("/#services"),
+    })),
+  };
+
+  const howTo = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "@id": `${SITE_URL}/#howto`,
+    name: "How to renew UAE documents with Renew-It",
+    description:
+      "Four simple steps to renew trade licenses, visas, Emirates IDs and corporate documents across the UAE.",
+    totalTime: "P7D",
+    estimatedCost: {
+      "@type": "MonetaryAmount",
+      currency: LICENSE_SERVICE_FEE.currency,
+      value: String(LICENSE_SERVICE_FEE.amount),
+    },
+    step: HOW_IT_WORKS_STEPS.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.title,
+      text: step.text,
+      url: absoluteUrl(`/#how-it-works`),
     })),
   };
 
@@ -204,6 +290,7 @@ export default function StructuredData() {
       <JsonLdScript data={webPage} />
       <JsonLdScript data={breadcrumb} />
       <JsonLdScript data={serviceList} />
+      <JsonLdScript data={howTo} />
       <JsonLdScript data={faqPage} />
     </>
   );
